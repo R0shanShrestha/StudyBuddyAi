@@ -12,6 +12,7 @@
   "description": "",
   "dependencies": {
     "@google/genai": "^1.6.0",
+    "@vercel/node": "^4.0.0",
     "bcrypt": "^6.0.0",
     "body-parser": "^2.2.0",
     "cookie-parser": "^1.4.7",

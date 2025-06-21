@@ -6,7 +6,13 @@ const AiRoutes = require("./routes/UserRoutes");
 const AuthRoutes = require("./routes/AuthRoutes");
 
 const app = express();
-app.use(cors({ origin: "*" }));
+app.use(
+  cors({
+    origin: "https://studybuddy.vercel.app",
+    credentials: true,
+    methods: ["POST", "GET"],
+  })
+);
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

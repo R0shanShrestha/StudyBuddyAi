@@ -18,7 +18,7 @@ const Generate = async (req, res) => {
 
     let result = await Brain(genPromt);
 
-    fs.writeFileSync("result.json", result, "utf-8");
+    // fs.writeFileSync("result.json", result, "utf-8");
     const updatingUploads = await User.findByIdAndUpdate(req.user._id, {
       $push: {
         uploads: [
