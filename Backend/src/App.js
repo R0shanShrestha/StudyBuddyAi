@@ -8,7 +8,7 @@ const AuthRoutes = require("./routes/AuthRoutes");
 const app = express();
 app.use(
   cors({
-    origin: "https://study-buddy-ai-uok8.vercel.app",
+    origin: "study-buddy-ai-uok8.vercel.app/",
     credentials: true,
     methods: ["POST", "GET"],
   })
