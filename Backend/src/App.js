@@ -6,7 +6,7 @@ const AiRoutes = require("./routes/UserRoutes");
 const AuthRoutes = require("./routes/AuthRoutes");
 
 const app = express();
-const allowedOrigins = ["https://study-buddy-ai-uok8.vercel.app"];
+const allowedOrigins = ["study-buddy-ai-uok8.vercel.app"];
 
 app.use(
   cors({
@@ -20,8 +20,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+<<<<<<< HEAD
 app.get("/test", (req, res) => {
   
+=======
+app.get("/", (req, res) => {
+>>>>>>> cd282c173cd35fb0c82b323f1ed4f5c1bb3c2b43
   res.send("Welcome to Server");
 });
 
