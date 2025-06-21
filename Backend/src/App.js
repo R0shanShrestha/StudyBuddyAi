@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.get("/test", (req, res) => {
+  
   res.send("Welcome to Server");
 });
 
