@@ -1,0 +1,154 @@
+{
+"summary": [
+"Class 10 Science delves into fundamental principles across Physics and Chemistry. In Chemistry, students learn about types of chemical reactions, the properties of acids, bases, and salts, the characteristics of metals and non-metals, and the vast world of carbon compounds, including their bonding and nomenclature. Physics covers essential concepts like electricity, including Ohm's Law and heating effects, the phenomena of light reflection and refraction, the human eye and its defects, and the magnetic effects of electric current, illustrating the interconnections between electricity and magnetism.",
+"Biology focuses on the intricate processes sustaining life, such as nutrition, respiration, transport, and excretion. It also explores control and coordination in living organisms, various methods of reproduction, and the foundational principles of heredity and evolution. Additionally, the curriculum addresses environmental concerns, including ecosystems, energy flow, and sustainable management of natural resources, fostering an understanding of our impact on the planet and the importance of conservation for a sustainable future."
+],
+"image_links": [
+"https://images.unsplash.com/photo-1582719503306-696328328169?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=MnwxMjA3fDB8MXxzZWFyY2h8NXx8Y2hlbWlzdHJ5fGVufDB8fHx8MTcwMTczNzMwMA&ixlib=rb-4.0.3",
+"https://images.unsplash.com/photo-1549497593-c15f9d14a2f0?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=MnwxMjA3fDB8MXxzZWFyY2h8Nnx8YmlvbG9neXxlbnwwfHwxfHwxNzAxNzM3MzAy&ixlib=rb-4.0.3"
+],
+"flashcards": [
+{
+"question": "Define an exothermic reaction.",
+"answer": "A chemical reaction that releases heat energy to the surroundings."
+},
+{
+"question": "What is the S.I. unit of electric current?",
+"answer": "Ampere (A)."
+},
+{
+"question": "Name the pigment responsible for the green colour of leaves.",
+"answer": "Chlorophyll."
+},
+{
+"question": "What is an amphoteric oxide?",
+"answer": "An oxide that reacts with both acids and bases to form salt and water."
+},
+{
+"question": "State Ohm's Law.",
+"answer": "The current flowing through a metallic conductor is directly proportional to the potential difference across its ends, provided its temperature remains constant. (V=IR)"
+},
+{
+"question": "What is the function of xylem in plants?",
+"answer": "To transport water and minerals from roots to other parts of the plant."
+},
+{
+"question": "Give the chemical formula of baking soda.",
+"answer": "NaHCO3 (Sodium Bicarbonate)."
+},
+{
+"question": "What is a reflex arc?",
+"answer": "The pathway taken by nerve impulses in a reflex action, involving sensory neuron, relay neuron, and motor neuron."
+},
+{
+"question": "Define focal length of a spherical mirror.",
+"answer": "The distance between the pole and the principal focus of the mirror."
+},
+{
+"question": "What is biodegradability?",
+"answer": "The ability of a substance to be decomposed by microorganisms."
+}
+],
+"mcqs": [
+{
+"question": "Which gas is produced when an acid reacts with a metal?",
+"correct_answer": "Hydrogen",
+"options": [
+"Oxygen",
+"Hydrogen",
+"Carbon dioxide",
+"Nitrogen"
+]
+},
+{
+"question": "The power of a lens is -4.0 D. What kind of lens is it?",
+"correct_answer": "Concave lens",
+"options": [
+"Convex lens",
+"Concave lens",
+"Plano-convex lens",
+"Plano-concave lens"
+]
+},
+{
+"question": "Which of the following is a component of the food web?",
+"correct_answer": "All of the above",
+"options": [
+"Producers",
+"Consumers",
+"Decomposers",
+"All of the above"
+]
+},
+{
+"question": "What is the chemical formula for quicklime?",
+"correct_answer": "CaO",
+"options": [
+"CaCO3",
+"Ca(OH)2",
+"CaO",
+"CaSO4"
+]
+},
+{
+"question": "The phenomenon of light responsible for the blue color of the sky is:",
+"correct_answer": "Scattering of light",
+"options": [
+"Reflection of light",
+"Refraction of light",
+"Dispersion of light",
+"Scattering of light"
+]
+},
+{
+"question": "Which hormone regulates glucose levels in the blood?",
+"correct_answer": "Insulin",
+"options": [
+"Thyroxin",
+"Adrenaline",
+"Insulin",
+"Testosterone"
+]
+},
+{
+"question": "What is the valency of carbon in CH4?",
+"correct_answer": "4",
+"options": [
+"1",
+"2",
+"3",
+"4"
+]
+},
+{
+"question": "The resistance of a conductor is directly proportional to its:",
+"correct_answer": "Length",
+"options": [
+"Area of cross-section",
+"Length",
+"Temperature",
+"Material"
+]
+},
+{
+"question": "Asexual reproduction through budding occurs in:",
+"correct_answer": "Yeast",
+"options": [
+"Amoeba",
+"Plasmodium",
+"Yeast",
+"Fern"
+]
+},
+{
+"question": "Which of the following is an example of a synthetic indicator?",
+"correct_answer": "Phenolphthalein",
+"options": [
+"Turmeric",
+"Litmus",
+"Phenolphthalein",
+"Red Cabbage extract"
+]
+}
+]
+}
