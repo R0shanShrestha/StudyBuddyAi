@@ -109,3 +109,6 @@ This project is open-source under the **My Self**.
 StudyBuddy AI was created to help students turn notes into knowledge using AI — fast, simple, and effective.
 
 > Upload → Process → Learn → Win 🧠🚀
+## 📬 Contact
+Built with ❤️ by Roshan Shrestha
+If you'd like to contribute or collaborate, feel free to reach out!
