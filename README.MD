@@ -4,6 +4,8 @@
 **Your AI-powered study companion that turns PDFs into flashcards, summaries, and quizzes.**  
 Study smarter with instant tools built just for you.
 
+# Site uri
+[https://study-buddy-ai-lac.vercel.app/]
 ---
 
 ## 🧩 Features
