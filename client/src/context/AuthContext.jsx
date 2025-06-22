@@ -41,7 +41,7 @@ const AuthContext = ({ children }) => {
         JSON.stringify(data),
         {
           headers: {
-            "content-type": "application/x-www-form-urlencoded",
+            "content-type": "application/json",
           },
         }
       );
@@ -69,8 +69,7 @@ const AuthContext = ({ children }) => {
         JSON.stringify(data),
         {
           headers: {
-            "content-type": "application/x-www-form-urlencoded",
-            "Access-Control-Allow-Origin": conf.serverUri,
+            "content-type": "application/json",
           },
         }
       );
