@@ -40,7 +40,10 @@ const AuthContext = ({ children }) => {
         `${conf.serverUri}api/v1/auth/login`,
         JSON.stringify(data),
         {
-          headers: { "content-type": "application/x-www-form-urlencoded" },
+          headers: {
+            "content-type": "application/x-www-form-urlencoded",
+            "Access-Control-Allow-Origin": conf.serverUri,
+          },
         }
       );
       const resData = res.data;
@@ -66,7 +69,10 @@ const AuthContext = ({ children }) => {
         `${conf.serverUri}api/v1/auth/signup`,
         JSON.stringify(data),
         {
-          headers: { "content-type": "application/x-www-form-urlencoded" },
+          headers: {
+            "content-type": "application/x-www-form-urlencoded",
+            "Access-Control-Allow-Origin": conf.serverUri,
+          },
         }
       );
       const resData = res.data;
