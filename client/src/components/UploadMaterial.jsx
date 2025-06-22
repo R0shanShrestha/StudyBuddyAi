@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import { UserContextProvider } from "../context/UserContext";
 
 const UploadMaterial = () => {
-  const { setLoading, isloading } = useContext(UserContextProvider);
+  const { setLoading, isloading, setUploadMaterial } =
+    useContext(UserContextProvider);
   const [fileName, setFileName] = useState("");
   const [uploaded, setUploaded] = useState(false);
 
@@ -15,7 +16,7 @@ const UploadMaterial = () => {
   };
 
   return (
-    <div className=" bg-white  left-0 h-fit  w-full     flex flex-col items-center justify-between py-6 px-4">
+    <div className=" bg-white  left-0 h-fit      flex flex-col items-center justify-between py-6 px-4">
       {/* Upload Card */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -43,6 +44,16 @@ const UploadMaterial = () => {
                 Browse Your Files
               </label>
             </div>
+            <div>
+              <button
+                onClick={() => {
+                  setUploadMaterial(false);
+                }}
+                className="border border-slate-400 py-2 px-3 rounded text-sm"
+              >
+                Close Upload
+              </button>
+            </div>
           </div>
         )}
         {uploaded && (
@@ -68,7 +79,7 @@ const UploadMaterial = () => {
         {uploaded && (
           <div className="flex flex-col m-2 text-sm text-gray-500 border-t pt-4 mt-4 gap-3">
             <div>
-              <p>This Upload pdf is not available in trial [Disable]  </p>
+              <p>This Upload pdf is not available in trial [Disable] </p>
             </div>
 
             <div className="flex gap-2">
