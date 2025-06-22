@@ -33,7 +33,12 @@ const customCors = (req, res, next) => {
 };
 
 // Apply built-in CORS middleware (allowing all origins in this case)
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://study-buddy-ai-uok8.vercel.app/"],
+    credentials: true,
+  })
+);
 
 // Apply custom CORS middleware for additional headers
 app.use(customCors);
