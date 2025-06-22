@@ -12,7 +12,6 @@ app.use(
     origin: ["https://study-buddy-ai-lac.vercel.app/"],
     methods: ["GET", "POST", "PUT", "UPDATE"],
     allowedHeaders: ["Content-Type"],
-    credentials: true,
   })
 );
 
