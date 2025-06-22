@@ -17,12 +17,21 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
-app.use(
-  cors({
-    origin: ["https://study-buddy-ai-lac.vercel.app/"],
-    credentials: true,
-  })
-);
+// Configure CORS to allow requests from your frontend origin
+const allowedOrigins = ["https://study-buddy-ai-lac.vercel.app"];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 // Apply custom CORS middleware for additional headers
 app.use(express.json());
