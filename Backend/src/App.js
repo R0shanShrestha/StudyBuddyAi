@@ -10,7 +10,7 @@ const app = express();
 // Allow only your frontend origin
 app.use(
   cors({
-    origin: ["https://study-buddy-ai-lac.vercel.app", "http://localhost:5173/"],
+    origin: ["https://study-buddy-ai-lac.vercel.app", "http://localhost:5173"],
     credentials: true,
   })
 );
