@@ -6,7 +6,7 @@ const AiRoutes = require("./routes/UserRoutes");
 const AuthRoutes = require("./routes/AuthRoutes");
 
 const app = express();
-const allowedOrigins = ["https://study-buddy-ai-uok8.vercel.app"];
+const allowedOrigins = ["https://study-buddy-ai-uok8.vercel.app/"];
 
 app.use(
   cors({

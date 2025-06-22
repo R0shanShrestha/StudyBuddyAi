@@ -12,7 +12,7 @@ try {
         if (err) {
           throw new Error("Server:", "Server Error");
         }
-
+        
         console.log("Database Connected ");
         // console.log("Server Running on Port: ", Port);
       });
