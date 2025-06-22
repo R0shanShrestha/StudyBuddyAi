@@ -12,7 +12,7 @@
       "dest": "/",
       "methods": ["GET,HEAD,PUT,PATCH,POST,DELETE"],
       "headers": {
-        "Access-Control-Allow-Origin": "https://study-buddy-ai-uok8.vercel.app/"
+        "Access-Control-Allow-Origin": "*"
       }
     }
   ]
