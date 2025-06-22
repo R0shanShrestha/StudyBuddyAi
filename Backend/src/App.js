@@ -7,16 +7,6 @@ const AuthRoutes = require("./routes/AuthRoutes");
 
 const app = express();
 
-// Apply built-in CORS middleware (allowing all origins in this case)
-app.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://study-buddy-ai-lac.vercel.app/"
-  );
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  next();
-});
 app.use(
   cors({
     origin: ["https://study-buddy-ai-lac.vercel.app/"],
@@ -34,6 +24,9 @@ app.use(cookieParser());
 
 app.get("/", (req, res) => {
   res.send("WElcome to server");
+});
+app.get("/test", (req, res) => {
+  res.send("WElcome to test");
 });
 
 app.use("/api/v1/auth/", AuthRoutes);
