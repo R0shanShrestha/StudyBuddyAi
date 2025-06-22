@@ -7,15 +7,17 @@ const AuthRoutes = require("./routes/AuthRoutes");
 
 const app = express();
 
+// Allow only your frontend origin
 app.use(
   cors({
-    origin: ["https://study-buddy-ai-lac.vercel.app/", "*"],
-    methods: ["GET", "POST", "PUT", "UPDATE"],
-    allowedHeaders: ["Content-Type"],
+    origin: "https://study-buddy-ai-lac.vercel.app",
+    credentials: true,
   })
 );
 
-// Apply custom CORS middleware for additional headers
+// OR allow all origins (less secure, only for testing)
+app.use(cors());
+
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
