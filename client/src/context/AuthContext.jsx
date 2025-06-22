@@ -36,7 +36,13 @@ const AuthContext = ({ children }) => {
     try {
       setLoading(true);
       setError({ status: false, msg: "" });
-      const res = await axios.post(`${conf.serverUri}api/v1/auth/login`, data);
+      const res = await axios.post(
+        `${conf.serverUri}api/v1/auth/login`,
+        JSON.stringify(data),
+        {
+          headers: { "content-type": "application/x-www-form-urlencoded" },
+        }
+      );
       const resData = res.data;
       setStorage("authtoken", resData?.authtoken);
       setStorage("user", JSON.stringify(resData?.user));
@@ -56,7 +62,13 @@ const AuthContext = ({ children }) => {
     try {
       setLoading(true);
       setError({ status: false, msg: "" });
-      const res = await axios.post(`${conf.serverUri}api/v1/auth/signup`, data);
+      const res = await axios.post(
+        `${conf.serverUri}api/v1/auth/signup`,
+        JSON.stringify(data),
+        {
+          headers: { "content-type": "application/x-www-form-urlencoded" },
+        }
+      );
       const resData = res.data;
       setStorage("authtoken", resData?.authtoken);
       setStorage("user", JSON.stringify(resData?.user));
