@@ -26,9 +26,7 @@ app.use(cookieParser());
 app.get("/", (req, res) => {
   res.send("WElcome to server");
 });
-app.get("/test", (req, res) => {
-  res.send("WElcome to test");
-});
+
 
 app.use("/api/v1/auth/", AuthRoutes);
 app.use("/api/v1/ai/", AiRoutes);
