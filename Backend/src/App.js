@@ -6,14 +6,14 @@ const AiRoutes = require("./routes/UserRoutes");
 const AuthRoutes = require("./routes/AuthRoutes");
 
 const app = express();
-const allowedOrigins = ["https://study-buddy-ai-uok8.vercel.app/"];
+const allowedOrigins ="https://study-buddy-ai-uok8.vercel.app/";
 
 app.use(
   cors({
-    origin: allowedOrigins[0],
+    origin: allowedOrigins,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
+    // preflightContinue: false,
+    // optionsSuccessStatus: 204,
   })
 );
 app.use(express.json());
