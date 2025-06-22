@@ -42,7 +42,6 @@ const AuthContext = ({ children }) => {
         {
           headers: {
             "content-type": "application/x-www-form-urlencoded",
-            "Access-Control-Allow-Origin": conf.serverUri,
           },
         }
       );
