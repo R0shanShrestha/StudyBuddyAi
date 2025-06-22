@@ -10,7 +10,7 @@ const app = express();
 // Apply built-in CORS middleware (allowing all origins in this case)
 app.use(
   cors({
-    origin: ["https://study-buddy-ai-lac.vercel.app/"],
+    origin: ["*"],
     credentials: true,
   })
 );
