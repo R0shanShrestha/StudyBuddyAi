@@ -20,13 +20,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-<<<<<<< HEAD
-app.get("/test", (req, res) => {
-  
-=======
 app.get("/", (req, res) => {
->>>>>>> cd282c173cd35fb0c82b323f1ed4f5c1bb3c2b43
-  res.send("Welcome to Server");
+  res.send("WElcome to server");
 });
 
 app.use("/api/v1/auth/", AuthRoutes);

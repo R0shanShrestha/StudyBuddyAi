@@ -14,7 +14,7 @@ try {
         }
 
         console.log("Database Connected ");
-        console.log("Server Running on Port: ", Port);
+        // console.log("Server Running on Port: ", Port);
       });
     }
   });
