@@ -81,8 +81,12 @@ const UserContext = ({ children }) => {
     } catch (error) {
       setUploadMaterial(false);
       setLoading(false);
-      // console.log(error);
-      alert(error?.response?.data?.msg);
+      // console.log(error)
+      if (error?.response?.data?.msg) {
+        alert(error?.response?.data?.msg);
+      } else {
+        alert(error?.message);
+      }
     }
   };
 

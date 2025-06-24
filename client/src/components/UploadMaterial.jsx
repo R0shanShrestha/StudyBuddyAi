@@ -13,14 +13,14 @@ const UploadMaterial = () => {
   const handleFileChange = (e) => {
     e.preventDefault();
 
-    if (fileName.type == "application/pdf") {
+    if (fileName.type == "application/pdf" && fileName.size < 10024) {
       pdfGenerator(fileName);
       setFileName("");
       setUploadMaterial(false);
     } else {
       setFileName("");
       setUploaded(false);
-      alert("Only pdf accepted");
+      alert("Only pdf accepted & file size will be less then 10 mb");
     }
   };
 
