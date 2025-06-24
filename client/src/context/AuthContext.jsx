@@ -127,7 +127,6 @@ const AuthContext = ({ children }) => {
           },
         }
       );
-      console.log(userData);
       setStorage("user", JSON.stringify(userData?.data?.user));
       setUser(userData?.data?.user);
       alert(userData?.data?.msg);
