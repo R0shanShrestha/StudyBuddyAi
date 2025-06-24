@@ -49,7 +49,7 @@ const GenerateWithPdf = async (req, res) => {
   let user = req?.user;
   const uploadedPdf = req?.file;
   // console.log(uploadedPdf);
-  if (uploadedPdf?.size > 210240) {
+  if (uploadedPdf?.size > 10240) {
     fs.unlinkSync("src/upload/" + uploadedPdf.filename);
     return res.status(400).json({ msg: "Your file Size is more than 10 mb" });
   }
@@ -70,7 +70,7 @@ const GenerateWithPdf = async (req, res) => {
       try {
         let result = await Brain(genPromt);
         // fs.writeFileSync("result.json", result, "utf-8");
-        fs.unlinkSync(uploadedPdf.path)
+        fs.unlinkSync(uploadedPdf.path);
         const updatingUploads = await User.findByIdAndUpdate(req.user._id, {
           $push: {
             uploads: [
@@ -90,7 +90,7 @@ const GenerateWithPdf = async (req, res) => {
           title: uploadedPdf.originalname,
         });
       } catch (error) {
-        fs.unlinkSync(uploadedPdf.path)
+        fs.unlinkSync(uploadedPdf.path);
         return res
           .status(400)
           .json({ msg: "Something went wrong ! please try again later." });
