@@ -49,10 +49,7 @@ const GenerateWithPdf = async (req, res) => {
   let user = req?.user;
   const uploadedPdf = req?.file;
   // console.log(uploadedPdf);
-  if (uploadedPdf?.size > 10240) {
-    fs.unlinkSync("src/upload/" + uploadedPdf.filename);
-    return res.status(400).json({ msg: "Your file Size is more than 10 mb" });
-  }
+
   if (uploadedPdf) {
     try {
       const pdfData = await extractTextFromPDF(uploadedPdf.path);
