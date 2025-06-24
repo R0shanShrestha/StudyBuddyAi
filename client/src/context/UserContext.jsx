@@ -15,6 +15,7 @@ export const UserContextProvider = createContext({
   setUploadMaterial: () => {},
   setLoading: () => {},
   generateData: () => {},
+  pdfGenerator: () => {},
 });
 const UserContext = ({ children }) => {
   const [isUploadMaterial, setUploadMaterial] = useState(false);
@@ -50,6 +51,39 @@ const UserContext = ({ children }) => {
     }
   };
 
+  // Pdf generator
+  const pdfGenerator = async (data) => {
+    const formData = new FormData();
+    formData.append("userfile", data);
+    try {
+      setLoading(true);
+      const res = await axios.post(
+        conf.serverUri + "api/v1/ai/upload/generate",
+        formData,
+        {
+          headers: {
+            Authorization: getItem("authtoken"),
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      // console.log(res);
+      setLoading(false);
+      setResult(res?.data?.result);
+      setRecent((pre) => [
+        { title: res?.data?.title, data: res?.data?.result },
+        ...pre,
+      ]);
+      alert(res?.data?.msg);
+      setUploadMaterial(false)
+    } catch (error) {
+      setUploadMaterial(false);
+      setLoading(false);
+      console.log(error);
+      alert(error?.response?.data?.msg);
+    }
+  };
+
   return (
     <UserContextProvider.Provider
       value={{
@@ -64,6 +98,7 @@ const UserContext = ({ children }) => {
         submitResultData,
         setsubmitResultData,
         setRecent,
+        pdfGenerator,
       }}
     >
       {children}

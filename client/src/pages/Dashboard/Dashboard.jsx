@@ -7,8 +7,8 @@ import Result from "./Result";
 const Dashboard = () => {
   const { isUploadMaterial, isloading } = useContext(UserContextProvider);
   return (
-    <div className="flex items-center justify-center  overflow-hidden  w-[70vw] mx-auto ">
-      <div className={`${isloading ? "hidden" : "block"}  ${isUploadMaterial ? "hidden" : "block"}   md:hidden w-fit`}>
+    <div className="flex items-center justify-center     w-[70vw] mx-auto ">
+      <div className={`${isloading ? "hidden" : "block"}  ${isUploadMaterial ? "hidden" : "block"}   lg:hidden w-fit`}>
         <Outlet />
       </div>
       <div className={`hidden lg:block `}>

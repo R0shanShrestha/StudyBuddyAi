@@ -1,8 +1,7 @@
 const { validationResult } = require("express-validator");
 const User = require("../model/User");
 const login = async (req, res) => {
-  const { password, email } =  req.body;
-  console.log(password)
+  const { password, email } = req.body;
   if (password == undefined || email == undefined) {
     return res.status(400).json({ msg: "Invalid Credientials !" });
   }
@@ -61,4 +60,26 @@ const Signup = async (req, res) => {
   //   res.send("Welcome")
 };
 
-module.exports = { login, Signup };
+const userAccount = async (req, res) => {
+  const user = req.user;
+  res.status(200).json({ user });
+};
+
+const deletePosts = async (req, res) => {
+  const postId = req?.body?.id;
+  // console.log(postId);
+  const user = req.user;
+  let updateUser = await User.findById(user.id);
+  let uploadsData = updateUser.uploads;
+  let sorted = uploadsData.filter((usr) => {
+    return usr._id != postId;
+  });
+
+  let sortData = await User.findByIdAndUpdate(user.id, {
+    uploads: sorted,
+  });
+
+  res.status(200).json({ msg: "Deleted", user: sortData });
+};
+
+module.exports = { login, Signup, userAccount, deletePosts };

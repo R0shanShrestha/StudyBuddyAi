@@ -1,84 +1,151 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Quizcard = ({ Mcq }) => {
+  // const question = Mcq;
   const [checked, setChecked] = useState([]);
-  const [show, setShow] = useState(false);
-  const [storeAns, setStoreAns] = useState([]);
-  // console.log(show, storeAns)
-  // console.log(storeAns);
+  const [show, setShow] = useState({
+    solvedQuestion: false,
+    unSolvedQuestion: true,
+  });
+  const [solvedQuestion, setSolvedQuestion] = useState(new Set([]));
+  const [unSolvedQuestion, setUnsolvedQuestion] = useState(Mcq);
+  const [correctAnswerofQuestion, setcorrectAnswerofQuestion] = useState(
+    new Set([])
+  );
+
+  // check the answer is correct if it than inc by 1 as the correct ans
+  const AnswerCorrectionAndCorrectCountHandler = () => {
+    // console.log(solvedQuestion);
+    Array.from(solvedQuestion).map((q) => {
+      q?.correct == true &&
+        setcorrectAnswerofQuestion((pre) => {
+          let newSet = new Set(pre).add(q);
+          return newSet;
+        });
+    });
+  };
+
+  // filter the question already solve
+
+  let lengthOfMCq = Mcq.length;
+  const questionFilter = () => {
+    // let solved = Array.from(solvedQuestion);
+
+    // // setUnsolvedQuestion(unsolv);
+    setUnsolvedQuestion(Mcq);
+    setSolvedQuestion([]);
+    setcorrectAnswerofQuestion([]);
+    setChecked([])
+    // console.log("newQuestion:", unsolv);
+    // console.log("MCq: ", unSolvedQuestion);
+    // console.log("Solved:", solvedQuestion);
+  };
+
+  // console.log(Mcq[2].question, "+", solvedQuestion[0]?.question);
+  // console.log("Unsolve question");
 
   return (
     <div className=" px-4 py-10 flex justify-center">
       <div className="max-w-2xl w-full bg-white rounded-2xl shadow-md p-6">
         <h2 className="text-xl font-semibold mb-2">Biology Chapter 1 Quiz</h2>
-        <p className="text-sm mb-6">
+        <p className="text-sm">
           You cannot Undo your Answer ! <br />
           Think Before Check !
         </p>
-        {show != true &&
-          Mcq.map((q, idx) => (
-            <div key={idx} className="mb-6">
-              <p className="font-medium">
-                {idx + 1}. {q.question}
-              </p>
-              <div className="mt-2 space-y-2">
-                {q.options.map((opt, i) => (
-                  <label
-                    key={i}
-                    className={` ${
-                      checked.includes(q.correct_answer) ? "hidden" : "block"
-                    } `}
-                  >
-                    <input
-                      onChange={(e) => {
-                        setChecked((pre) => [q.correct_answer, ...pre]);
-                      }}
-                      type="checkbox"
-                      onClick={() => {
-                        setStoreAns((pre) => [
-                          {
-                            question: q.question,
-                            myAnswer: opt,
-                            correct: opt == q.correct_answer ? true : false,
-                            msg:
-                              opt == q.correct_answer
-                                ? "Correct Answer"
-                                : "Wrong Answer",
-                            ans: q.correct_answer,
-                          },
-                          ...pre,
-                        ]);
-                      }}
-                      name={`q${idx}`}
-                      className={`mr-2 `}
-                    />
-                    {opt}
-                  </label>
-                ))}
+        <p className="text-sm mb-6 border-t flex justify-between">
+          <span>Total Questions: {lengthOfMCq}</span>
+          <span>Correct Answer: {correctAnswerofQuestion.size}</span>
+        </p>
+        {show.unSolvedQuestion == true && unSolvedQuestion != ""
+          ? unSolvedQuestion?.map((q, idx) => (
+              <div key={idx} className="mb-6">
+                <p className="font-medium">
+                  {idx + 1}. {q.question}
+                </p>
+                <div className="mt-2 space-y-2">
+                  {q.options.map((opt, i) => (
+                    <label
+                      key={i}
+                      className={` ${
+                        checked.includes(q.correct_answer) ? "hidden" : "block"
+                      } `}
+                    >
+                      <input
+                        onChange={(e) => {
+                          setChecked((pre) => [q.correct_answer, ...pre]);
+                        }}
+                        type="checkbox"
+                        onClick={() => {
+                          setSolvedQuestion((pre) => {
+                            let newSet = new Set(pre).add({
+                              question: q.question,
+                              myAnswer: opt,
+                              correct: opt == q.correct_answer ? true : false,
+                              msg:
+                                opt == q.correct_answer
+                                  ? "Correct Answer"
+                                  : "Wrong Answer",
+                              ans: q.correct_answer,
+                            });
+                            return newSet;
+                          });
+                        }}
+                        name={`q${idx}`}
+                        className={`mr-2 `}
+                      />
+                      {opt}
+                    </label>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          : !show.solvedQuestion &&
+            solvedQuestion != " " && (
+              <div className="mb-6">
+                <p className="font-medium">
+                  You have completed all of the quiz questions.
+                </p>
+                <div className="mt-2 space-y-2">
+                  <label className="block">
+                    ✅ Please Checked them All Question Answered. 📤
+                  </label>
+                </div>
+              </div>
+            )}
 
         {/* Checking the storedans is empty or not  */}
-        {show &&
-          storeAns != " " &&
-          storeAns?.map((q, idx) => (
-            <div key={idx} className="mb-6">
+        {show.solvedQuestion && Array.from(solvedQuestion) != "" && (
+          <>
+            <div className="mb-6 border-b">
               <p className="font-medium">
-                {idx + 1}. {q.question}
+                You have Solved {correctAnswerofQuestion.size} out of{" "}
+                {Mcq.length}.
               </p>
               <div className="mt-2 space-y-2">
-                <label className="block mx-4">
-                  {q.correct
-                    ? `${q.ans} is ${q.msg} ✔️`
-                    : `${q.myAnswer} is ${q.msg} ❌ \n Correct Answer is ${q.ans} ✔️ `}
+                <label className="block">
+                  ✅ Please Checked them All Question Answered. 📤
                 </label>
               </div>
             </div>
-          ))}
+            {Array.from(solvedQuestion)?.map((q, idx) => (
+              <div key={idx} className="mb-6">
+                <p className="font-medium">
+                  {idx + 1}. {q.question}
+                </p>
+                <div className="mt-2 space-y-2">
+                  <label className="block mx-4">
+                    {q.correct
+                      ? `${q.ans} is ${q.msg} ✔️ `
+                      : `${q.myAnswer} is ${q.msg} ❌ \n Correct Answer is ${q.ans} ✔️ `}
+                  </label>
+                </div>
+              </div>
+            ))}
+          </>
+        )}
 
-        {/* if show is true but storeAns is empty */}
-        {show && storeAns == "" && (
+        {/* if show is true but solvedQuestion is empty */}
+        {show.solvedQuestion && solvedQuestion == "" && (
           <div className="mb-6">
             <p className="font-medium">
               ⚠️ You haven't completed any of the quiz questions.
@@ -91,26 +158,35 @@ const Quizcard = ({ Mcq }) => {
           </div>
         )}
 
-        <button
-          onClick={() => {
-            setShow(true);
-          }}
-          className={`bg-black text-white px-6 py-2 rounded-full ${
-            !show ? "flex" : "hidden"
-          }`}
-        >
-          Check the Answer
-        </button>
-        <button
-          onClick={() => {
-            setShow(false);
-          }}
-          className={`bg-black text-white px-6 py-2 rounded-full ${
-            show ? "flex" : "hidden"
-          }`}
-        >
-          More Questions
-        </button>
+        <div className="flex">
+          <button
+            onClick={() => {
+              setShow({
+                solvedQuestion: true,
+                unSolvedQuestion: false,
+              });
+              AnswerCorrectionAndCorrectCountHandler();
+            }}
+            className={`bg-black text-white px-6 py-2 rounded-full ${"flex"}`}
+          >
+            Check Submited
+          </button>
+          <button
+            onClick={() => {
+              questionFilter();
+              setShow({
+                solvedQuestion: false,
+                unSolvedQuestion: true,
+              });
+            }}
+            className={`bg-black text-white px-6 py-2 rounded-full ${"flex"}`}
+          >
+            {/* {show.solvedQuestion != false
+              ? " Back to Questions"
+              : " Reset Questions"} */}
+            Reset Questions
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ const Result = () => {
     }
   }, []);
   return (
-    <div className="w-[80vw] mx-auto">
+    <div className="w-[70vw] mx-auto">
       <div className="max-w-3xl mx-auto  bg-white rounded-lg p-6 shadow">
         <div className="flex  gap-2 items-center">
           ← Back to
@@ -67,20 +67,26 @@ const Result = () => {
           </button>
         </div>
 
-        {/* Quiz Content */}
-        {selTab == "summery" && (
-          <SummaryCard
-            Summary1={Result?.data?.summary[0]}
-            Summary2={Result?.data?.summary[1]}
-            title={Result?.data?.title}
-            bigImg={"https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg"}
-            smallImg={"https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg"}
-          />
-        )}
-        {selTab == "quiz" && <Quizcard Mcq={Result?.data?.mcqs} />}
-        {selTab == "flashcards" && (
-          <Flashcard Flashcard={Result?.data?.flashcards} />
-        )}
+        <div className=" w-full">
+          {/*  Content */}
+          {selTab == "summery" && (
+            <SummaryCard
+              Summary1={Result?.data?.summary[0]}
+              Summary2={Result?.data?.summary[1]}
+              title={Result?.data?.title}
+              bigImg={
+                "https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg"
+              }
+              smallImg={
+                "https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg"
+              }
+            />
+          )}
+          {selTab == "quiz" && <Quizcard Mcq={Result?.data?.mcqs} />}
+          {selTab == "flashcards" && (
+            <Flashcard Flashcard={Result?.data?.flashcards} />
+          )}
+        </div>
       </div>
     </div>
   );

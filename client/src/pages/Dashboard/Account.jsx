@@ -1,13 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
-import { FaUserCircle, FaEnvelope, FaEdit, FaLock } from "react-icons/fa";
+import {
+  FaUserCircle,
+  FaEnvelope,
+  FaEdit,
+  FaLock,
+  FaTrashAlt,
+} from "react-icons/fa";
 import { AuthContextProvider } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContextProvider } from "../../context/UserContext";
-import { getItem } from "../../utils/LocalStorageManger";
 
 const Account = () => {
-  const { setLogged, setUser, isLogged, user } =
+  const { setLogged, setUser, isLogged, user, UserPage, DeleteUploadFiles } =
     useContext(AuthContextProvider);
+
+  useEffect(() => {
+    UserPage();
+  }, [user]);
+
   let { setResult, setRecent, Recent } = useContext(UserContextProvider);
 
   return (
@@ -39,20 +49,33 @@ const Account = () => {
           <ul className="text-sm text-gray-600 list-disc flex  pl-5 flex-col">
             {user?.uploads?.map((list, idx) => {
               return (
-                <li key={idx} className="grid grid-cols-2 gap-2 capitalize">
+                <li
+                  key={idx}
+                  className="grid grid-cols-2 gap-2 capitalize items-center"
+                >
                   {idx + 1}. {list?.title}
-                  <Link
-                    onClick={() => {
-                      setResult({
-                        title: list?.title,
-                        data: JSON.parse(list?.data),
-                      });
-                    }}
-                    to={"/dashboard/result"}
-                    className="text-blue-600 hover:underline"
-                  >
-                    [View]
-                  </Link>
+                  <div className="flex gap-2 items-center">
+                    <Link
+                      onClick={() => {
+                        setResult({
+                          title: list?.title,
+                          data: JSON.parse(list?.data),
+                        });
+                      }}
+                      to={"/dashboard/result"}
+                      className="text-blue-600 hover:underline"
+                    >
+                      [ View ]
+                    </Link>
+                    <span
+                      onClick={() => {
+                        DeleteUploadFiles(list._id);
+                      }}
+                      className="p-2 flex items-center gap-2 text-red-500 cursor-pointer"
+                    >
+                      [ Delete ]
+                    </span>
+                  </div>
                 </li>
               );
             })}

@@ -1,18 +1,27 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { UserContextProvider } from "../context/UserContext";
 
 const UploadMaterial = () => {
-  const { setLoading, isloading, setUploadMaterial } =
+  const { setLoading, isloading, setUploadMaterial, pdfGenerator } =
     useContext(UserContextProvider);
   const [fileName, setFileName] = useState("");
   const [uploaded, setUploaded] = useState(false);
 
+  // console.log(fileName)
+
   const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setFileName(file?.name || "");
-    setUploaded(true);
-    // setLoading(true);
+    e.preventDefault();
+
+    if (fileName.type == "application/pdf") {
+      pdfGenerator(fileName);
+      setFileName("");
+      setUploadMaterial(false);
+    } else {
+      setFileName("");
+      setUploaded(false);
+      alert("Only pdf accepted");
+    }
   };
 
   return (
@@ -30,12 +39,16 @@ const UploadMaterial = () => {
 
         {!uploaded && (
           <div className="mb-4 flex gap-2 items-center">
-            <div>
+            <form method="post" encType="multipart/form-data">
               <input
                 id="file-upload"
+                name="userfile"
                 type="file"
                 className="hidden"
-                onChange={handleFileChange}
+                onChange={(e) => {
+                  setUploaded(true);
+                  setFileName(e.target.files[0]);
+                }}
               />
               <label
                 htmlFor="file-upload"
@@ -43,7 +56,7 @@ const UploadMaterial = () => {
               >
                 Browse Your Files
               </label>
-            </div>
+            </form>
             <div>
               <button
                 onClick={() => {
@@ -59,7 +72,8 @@ const UploadMaterial = () => {
         {uploaded && (
           <div className="text-sm text-gray-700 mt-2 mb-4">
             <p>
-              ✅ Selected File: <span className="font-medium">{fileName}</span>
+              ✅ Selected File:{" "}
+              <span className="font-medium">{fileName.name}</span>
             </p>
           </div>
         )}
@@ -78,13 +92,11 @@ const UploadMaterial = () => {
         </div>
         {uploaded && (
           <div className="flex flex-col m-2 text-sm text-gray-500 border-t pt-4 mt-4 gap-3">
-            <div>
-              <p>This Upload pdf is not available in trial [Disable] </p>
-            </div>
-
             <div className="flex gap-2">
               <button
-                disabled
+                onClick={(e) => {
+                  handleFileChange(e);
+                }}
                 className="inline-block cursor-pointer px-4 py-2 bg-slate-800 text-white rounded hover:bg-gray-950 transition text-sm"
               >
                 Submit Now

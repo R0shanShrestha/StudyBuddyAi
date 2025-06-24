@@ -3,6 +3,7 @@ import { conf } from "../config/ClientConfig";
 import axios from "axios";
 import { getItem, setStorage } from "../utils/LocalStorageManger";
 import { UserContextProvider } from "./UserContext";
+import { data } from "react-router-dom";
 
 export const AuthContextProvider = createContext({
   isLogged: Boolean,
@@ -13,6 +14,8 @@ export const AuthContextProvider = createContext({
   Signup: () => {},
   setUser: () => {},
   login: () => {},
+  UserPage: () => {},
+  DeleteUploadFiles: () => {},
 });
 
 const AuthContext = ({ children }) => {
@@ -91,9 +94,63 @@ const AuthContext = ({ children }) => {
       // setError({ status: true, msg: error?.response?.data.msg });
     }
   };
+
+  const UserPage = async () => {
+    try {
+      setLoading(true);
+
+      const userData = await axios.get(conf.serverUri + "api/v1/auth/account", {
+        headers: {
+          Authorization: getItem("authtoken"),
+        },
+      });
+      setStorage("user", JSON.stringify(userData?.data?.user));
+      setUser(userData?.data?.user);
+    } catch (error) {
+      setLoading(false);
+      // console.log(error);
+      alert("Network Error");
+    }
+  };
+
+  const DeleteUploadFiles = async (id) => {
+    // console.log(id);
+    try {
+      setLoading(true);
+      const userData = await axios.post(
+        conf.serverUri + "api/v1/auth/delete/post",
+        JSON.stringify({ id }),
+        {
+          headers: {
+            Authorization: getItem("authtoken"),
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(userData);
+      setStorage("user", JSON.stringify(userData?.data?.user));
+      setUser(userData?.data?.user);
+      alert(userData?.data?.msg);
+    } catch (error) {
+      setLoading(false);
+      // console.log(error);
+      alert("Network Error");
+    }
+  };
+
   return (
     <AuthContextProvider.Provider
-      value={{ isLogged, setLogged, setUser, login, user, Signup, isLoading }}
+      value={{
+        isLogged,
+        setLogged,
+        setUser,
+        login,
+        user,
+        Signup,
+        isLoading,
+        UserPage,
+        DeleteUploadFiles,
+      }}
     >
       {children}
     </AuthContextProvider.Provider>
