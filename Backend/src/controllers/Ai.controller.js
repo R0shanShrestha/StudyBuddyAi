@@ -53,7 +53,6 @@ const GenerateWithPdf = async (req, res) => {
   if (uploadedPdf) {
     try {
       const pdfData = await extractTextFromPDF(uploadedPdf.path);
-
       let genPromt =
         "Based on the following PDF content: (" +
         pdfData +
@@ -63,37 +62,37 @@ const GenerateWithPdf = async (req, res) => {
         "\n3. flashcards: Generate a reasonable number of flashcards based on the content (each as an object with 'question' and 'answer')." +
         "\n4. mcqs: Generate a suitable number of multiple-choice questions based on the content (each with 'question', 'correct_answer', and 'options' array)." +
         "\n\nOutput only the raw JSON (no markdown, no extra characters, no backslashes, no explanations, no ```json). Keep the structure clean and minimal.";
-
-      try {
-        let result = await Brain(genPromt);
-        // fs.writeFileSync("result.json", result, "utf-8");
-        fs.unlinkSync(uploadedPdf.path);
-        const updatingUploads = await User.findByIdAndUpdate(req.user._id, {
-          $push: {
-            uploads: [
-              {
-                title: uploadedPdf.originalname,
-                data: result,
-              },
-            ],
-          },
-        });
-        if (!updatingUploads) {
-          return res.status(401).json({ msg: "Failed to update uploads" });
-        }
-        res.status(200).json({
-          result: result,
-          msg: "Question Prepared ",
-          title: uploadedPdf.originalname,
-        });
-      } catch (error) {
-        fs.unlinkSync(uploadedPdf.path);
+      let result = await Brain(genPromt);
+      if (!result) {
         return res
-          .status(400)
-          .json({ msg: "Something went wrong ! please try again later." });
+          .status(401)
+          .json({ msg: "Failed to uploads ! Try again later" });
       }
+      // fs.writeFileSync("result.json", result, "utf-8");
+      fs.unlinkSync(uploadedPdf.path);
+      const updatingUploads = await User.findByIdAndUpdate(req.user._id, {
+        $push: {
+          uploads: [
+            {
+              title: uploadedPdf.originalname,
+              data: result,
+            },
+          ],
+        },
+      });
+      if (!updatingUploads) {
+        return res.status(401).json({ msg: "Failed to update uploads" });
+      }
+      res.status(200).json({
+        result: result,
+        msg: "Question Prepared ",
+        title: uploadedPdf.originalname,
+      });
     } catch (error) {
-      console.log(error);
+      fs.unlinkSync(uploadedPdf.path);
+      return res.status(400).json({
+        msg: "The model is overloaded. Please try again later.",
+      });
     }
   } else {
     return res.status(400).json({
