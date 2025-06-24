@@ -12,8 +12,8 @@ const UploadMaterial = () => {
 
   const handleFileChange = (e) => {
     e.preventDefault();
-
-    if (fileName.type == "application/pdf" && fileName.size < 10024) {
+    // console.log(fileName);
+    if (fileName.type == "application/pdf" && fileName.size < 10000000) {
       pdfGenerator(fileName);
       setFileName("");
       setUploadMaterial(false);
