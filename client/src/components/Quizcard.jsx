@@ -27,23 +27,6 @@ const Quizcard = ({ Mcq }) => {
 
   // filter the question already solve
 
-  let lengthOfMCq = Mcq.length;
-  const questionFilter = () => {
-    // let solved = Array.from(solvedQuestion);
-
-    // // setUnsolvedQuestion(unsolv);
-    setUnsolvedQuestion(Mcq);
-    setSolvedQuestion([]);
-    setcorrectAnswerofQuestion([]);
-    setChecked([])
-    // console.log("newQuestion:", unsolv);
-    // console.log("MCq: ", unSolvedQuestion);
-    // console.log("Solved:", solvedQuestion);
-  };
-
-  // console.log(Mcq[2].question, "+", solvedQuestion[0]?.question);
-  // console.log("Unsolve question");
-
   return (
     <div className=" px-4 py-10 flex justify-center">
       <div className="max-w-2xl w-full bg-white rounded-2xl shadow-md p-6">
@@ -53,8 +36,10 @@ const Quizcard = ({ Mcq }) => {
           Think Before Check !
         </p>
         <p className="text-sm mb-6 border-t flex justify-between">
-          <span>Total Questions: {lengthOfMCq}</span>
-          <span>Correct Answer: {correctAnswerofQuestion.size}</span>
+          <span>Total Questions: {Mcq.length}</span>
+          <span>
+            Correct Answer: {Array.from(correctAnswerofQuestion).length}
+          </span>
         </p>
         {show.unSolvedQuestion == true && unSolvedQuestion != ""
           ? unSolvedQuestion?.map((q, idx) => (
@@ -118,8 +103,8 @@ const Quizcard = ({ Mcq }) => {
           <>
             <div className="mb-6 border-b">
               <p className="font-medium">
-                You have Solved {correctAnswerofQuestion.size} out of{" "}
-                {Mcq.length}.
+                You have Solved {Array.from(correctAnswerofQuestion).length} out
+                of {Mcq.length}.
               </p>
               <div className="mt-2 space-y-2">
                 <label className="block">
@@ -145,7 +130,7 @@ const Quizcard = ({ Mcq }) => {
         )}
 
         {/* if show is true but solvedQuestion is empty */}
-        {show.solvedQuestion && solvedQuestion == "" && (
+        {show.solvedQuestion && Array.from(solvedQuestion) == "" && (
           <div className="mb-6">
             <p className="font-medium">
               ⚠️ You haven't completed any of the quiz questions.
@@ -159,21 +144,41 @@ const Quizcard = ({ Mcq }) => {
         )}
 
         <div className="flex">
+          {show.solvedQuestion && (
+            <button
+              onClick={() => {
+                setShow({
+                  solvedQuestion: false,
+                  unSolvedQuestion: true,
+                });
+                AnswerCorrectionAndCorrectCountHandler();
+              }}
+              className={`bg-black text-white px-6 py-2 rounded-full ${"flex"}`}
+            >
+              Back to Question
+            </button>
+          )}
+          {!show.solvedQuestion && (
+            <button
+              onClick={() => {
+                setShow({
+                  solvedQuestion: true,
+                  unSolvedQuestion: false,
+                });
+                AnswerCorrectionAndCorrectCountHandler();
+              }}
+              className={`bg-black text-white px-6 py-2 rounded-full ${"flex"}`}
+            >
+              Check Submited
+            </button>
+          )}
           <button
             onClick={() => {
-              setShow({
-                solvedQuestion: true,
-                unSolvedQuestion: false,
-              });
-              AnswerCorrectionAndCorrectCountHandler();
-            }}
-            className={`bg-black text-white px-6 py-2 rounded-full ${"flex"}`}
-          >
-            Check Submited
-          </button>
-          <button
-            onClick={() => {
-              questionFilter();
+              // questionFilter();
+              setUnsolvedQuestion(Mcq);
+              setSolvedQuestion([]);
+              setcorrectAnswerofQuestion([]);
+              setChecked([]);
               setShow({
                 solvedQuestion: false,
                 unSolvedQuestion: true,
