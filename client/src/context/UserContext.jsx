@@ -29,10 +29,11 @@ const UserContext = ({ children }) => {
       setLoading(true);
       const res = await axios.post(
         conf.serverUri + "api/v1/ai/generate",
-        data,
+        JSON.stringify(data),
         {
           headers: {
             Authorization: getItem("authtoken"),
+            "Content-Type": "application/json",
           },
         }
       );
@@ -47,7 +48,12 @@ const UserContext = ({ children }) => {
     } catch (error) {
       setLoading(false);
       // console.log(error);
-      alert(error?.response?.data?.msg);
+      // console.log(error)
+      if (error?.response?.data?.msg) {
+        alert(error?.response?.data?.msg);
+      } else {
+        alert(error?.message);
+      }
     }
   };
 
