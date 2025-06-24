@@ -75,13 +75,14 @@ const UserContext = ({ children }) => {
         { title: res?.data?.title, data: res?.data?.result },
         ...pre,
       ]);
+      console.log(res)
       alert(res?.data?.msg);
       setUploadMaterial(false)
     } catch (error) {
       setUploadMaterial(false);
       setLoading(false);
       console.log(error);
-      alert(error?.response?.data?.msg);
+      // alert(error?.response?.data?.msg);
     }
   };
 
