@@ -21,7 +21,7 @@ const Account = () => {
   let { setResult, setRecent, Recent } = useContext(UserContextProvider);
 
   return (
-    <div className="w-[80vw] mx-auto justify-center items-center flex  h-[70vh]">
+    <div className="w-fit mx-auto justify-center items-center flex  h-[70vh]">
       {/* Profile Card */}
       <div className="w-full max-w-md bg-white shadow-md rounded-xl p-6 mt-10 text-center space-y-6 ">
         {/* Avatar + Info */}
