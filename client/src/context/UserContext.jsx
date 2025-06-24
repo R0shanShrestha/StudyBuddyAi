@@ -53,7 +53,7 @@ const UserContext = ({ children }) => {
 
   // Pdf generator
   const pdfGenerator = async (data) => {
-    console.log("welcome to StudyBuddy")
+    console.log("welcome to StudyBuddy");
     const formData = new FormData();
     formData.append("userfile", data);
     try {
@@ -75,14 +75,14 @@ const UserContext = ({ children }) => {
         { title: res?.data?.title, data: res?.data?.result },
         ...pre,
       ]);
-      console.log(res)
+      // console.log(res)
       alert(res?.data?.msg);
-      setUploadMaterial(false)
+      setUploadMaterial(false);
     } catch (error) {
       setUploadMaterial(false);
       setLoading(false);
-      console.log(error);
-      // alert(error?.response?.data?.msg);
+      // console.log(error);
+      alert(error?.response?.data?.msg);
     }
   };
 
