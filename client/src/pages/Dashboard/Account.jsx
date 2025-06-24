@@ -33,7 +33,7 @@ const Account = () => {
           <div className="px-10 text-left flex flex-col ">
             <h2 className="font-semibold text-lg">{user?.fullname}</h2>
             <p className="text-sm text-gray-500">{user?.email}</p>
-            <button className="mt-3 px-4 py-2 text-sm bg-gray-900 text-white rounded hover:bg-gray-700 transition">
+            <button  className=" hidden mt-3 px-4 py-2 text-sm bg-gray-900 text-white rounded hover:bg-gray-700 transition">
               Edit Profile
             </button>
           </div>
