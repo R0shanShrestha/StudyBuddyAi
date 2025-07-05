@@ -58,7 +58,7 @@ const UserContext = ({ children }) => {
 
   // Pdf generator
   const pdfGenerator = async (data) => {
-    console.log("welcome to StudyBuddy");
+    // console.log("welcome to StudyBuddy");
     const formData = new FormData();
     formData.append("userfile", data);
     try {

@@ -23,9 +23,9 @@ const DashHome = () => {
     }
   };
   return (
-    <div className="  max-w-[70vw] min-h-[80vh] mx-auto  flex items-center ">
+    <div className="  sm:max-w-[70vw] min-h-[80vh] mx-auto w-full p-2   flex items-center ">
       {/* Main Content */}
-      <main className="text-center max-w-3xl mx-auto shadow-xl p-10 rounded-2xl">
+      <main className="text-center sm:max-w-3xl w-full  mx-auto shadow-xl p-10 rounded-2xl">
         <h2 className="text-lg sm:text-xl md:text-2xl font-bold  mb-2">
           Welcome back to StudyBuddy AI
         </h2>

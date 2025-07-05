@@ -6,11 +6,15 @@ import Loading from "../../components/Loading";
 const Dashboard = () => {
   const { isUploadMaterial, isloading } = useContext(UserContextProvider);
   return (
-    <div className="flex items-center justify-center w-fit mx-auto ">
-      <div className={`${isloading ? "hidden" : "block"}  ${isUploadMaterial ? "hidden" : "block"}   lg:hidden w-fit`}>
+    <div className="flex items-center justify-center w-full sm:w-fit  mx-auto ">
+      <div
+        className={`${isloading ? "hidden" : "block"}  ${
+          isUploadMaterial ? "hidden" : "block"
+        }   lg:hidden  w-full sm:w-fit`}
+      >
         <Outlet />
       </div>
-      <div className={`hidden lg:block `}>
+      <div className={`hidden lg:block  `}>
         <Outlet />
       </div>
       {isloading ? <Loading /> : isUploadMaterial && <UploadMaterial />}

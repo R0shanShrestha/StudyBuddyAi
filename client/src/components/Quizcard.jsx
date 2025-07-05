@@ -28,7 +28,7 @@ const Quizcard = ({ Mcq }) => {
   // filter the question already solve
 
   return (
-    <div className=" px-4 py-10 flex justify-center">
+    <div className=" sm:px-4 py-10 flex justify-center  w-full">
       <div className="max-w-2xl w-full bg-white rounded-2xl shadow-md p-6">
         <h2 className="text-xl font-semibold mb-2">Biology Chapter 1 Quiz</h2>
         <p className="text-sm">

@@ -15,7 +15,7 @@ const Result = () => {
     }
   }, []);
   return (
-    <div className="w-[70vw] mx-auto">
+    <div className="sm:w-[70vw] mx-auto ">
       <div className="max-w-3xl mx-auto  bg-white rounded-lg p-6 shadow">
         <div className="flex  gap-2 items-center">
           ← Back to
